@@ -7,24 +7,23 @@ use Illuminate\Http\Request;
 class UserAdmin extends Controller
 {
     //
-    public function Teknisi()
+    public function TeknisiView()
     {
-        return view('teknisi', [
+        return view('dashboard.AdminTeknisi', [
             "title" => "Data Teknisi"
         ]);
     }
 
-    public function Aplikasi()
+    public function AplikasiView()
     {
-
-        return view('aplikasi', [
+        return view('dashboard.AdminAplikasi', [
             "title" => "Data Aplikasi"
         ]);
     }
 
-    public function Perusahaan()
+    public function PerusahaanView()
     {
-        return view('perusahaan', [
+        return view('dashboard.AdminPerusahaan', [
             "title" => "Data Nama Perusahaan"
         ]);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/teknisi', [UserAdmin::class, 'Teknisi']);
-Route::get('/aplikasi', [UserAdmin::class, 'Aplikasi']);
-Route::get('/perusahaan', [UserAdmin::class, 'Perusahaan']);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/',                     [Dashboard::class, 'Check']);
+        Route::prefix('admin')->group(function () {
+            Route::get('/perusahaan',       [UserAdmin::class, 'PerusahaanView']);
+            Route::get('/aplikasi',         [UserAdmin::class, 'AplikasiView']);
+            Route::get('/teknisi',          [UserAdmin::class, 'TeknisiView']);
+        });
 
+        Route::prefix('reporter')->group(function () {
+        });
 
+        Route::prefix('teknisi')->group(function () {
+        });
+    });
+});
 
-// Route::get('/aplikasi', function () {
-//     return view('aplikasi');
-// })
-
-// ->middleware(['auth'])->name('aplikasi');
-
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';

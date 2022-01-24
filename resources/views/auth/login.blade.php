@@ -1,56 +1,90 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends("auth.index")
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+@section("title", "Login")
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section("content")
+<div class="col-12">
+    <form class="mt-3 mb-3" autocomplete="off">
+        @csrf
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+        <a href="{{config('app.url')}}" class="text-black">
+            <div class="d-flex align-items-center mb-3 ms-5 me-5">
+                <img src="{{config('app.url')}}/assets/img/logo_sig.png" height="42" alt="SIG" class="me-3">
+                <div class="d-block ms-2">
+                    <h4 class="fw-bold mb-0">{{config("app.name")}}</h4>
+                </div>
             </div>
+        </a>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+        <div class="auth-text auth-message fs-14 fw-bold"></div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+        <div class="d-block mb-3">
+            <div class="input-group mb-1">
+                <span class="input-group-text bg-white ps-3">
+                    <i class="ri-mail-line"></i>
+                </span>
+                <input type="email" class="form-control ps-0 pe-3 pt-3 pb-3 fs-14 shadow-none border-start-0" placeholder="Email" name="email">
             </div>
+            <div class="auth-text auth-email fw-bold fs-12"></div>
+        </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
+        <div class="d-block mb-3">
+            <div class="input-group mb-1">
+                <span class="input-group-text bg-white ps-3">
+                    <i class="ri-lock-line"></i>
+                </span>
+                <input type="password" class="form-control ps-0 pe-3 pt-3 pb-3 fs-14 shadow-none border-start-0 border-end-0" placeholder="Password" name="password">
+                <span class="input-group-text bg-white ps-3" onclick="ShowPassword()">
+                    <i class="ri-eye-off-line"></i>
+                </span>
             </div>
+            <div class="auth-text auth-password fw-bold fs-12"></div>
+        </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+        <div class="form-check mb-3 fs-14 text-start">
+            <input class="form-check-input input-sm shadow-none" type="checkbox" name="remember">
+            <label class="form-check-label" for="flexCheckDefault">
+                Remember Me
+            </label>
+        </div>
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        <div class="d-flex mb-3">
+            <button class="btn btn-blp1 shadow-none w-100 text-white ps-5 pe-5 pt-2 pb-2 fs-14">
+                Login
+            </button>
+        </div>
+
+        <div class="d-flex fs-12 fw-bold">
+            <span class="ms-auto">
+                Lupa Password?
+                <a href="{{config('app.config')}}/forgot-password">
+                    Klik Disini
+                </a>
+            </span>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $('form').submit(function(e) {
+        e.preventDefault();
+        $("button").addClass("disabled");
+        $.ajax({
+            type: "POST",
+            url: "{{config('app.url')}}/{{Request::segment(1)}}",
+            data: $(this).serialize(),
+            success: function(r) {
+                $(".auth-message").addClass("text-start text-success mb-3").removeClass("auth-text").html(r.message);
+                setTimeout(function() {
+                    location.href = r.redirect_url;
+                }, 1000);
+            },
+            error: function(r) {
+                $("button").removeClass("disabled");
+                $.each(r.responseJSON.errors, function(k, v) {
+                    $(`.auth-${k}`).addClass("text-start text-danger").html(v);
+                });
+            }
+        })
+    })
+</script>
+@endsection
