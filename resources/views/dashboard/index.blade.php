@@ -53,7 +53,9 @@
                         <img src="/assets/adminLTE/img/avatar.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>
+                            {{Auth::user()->name}}
+                        </p>
                         <a href="#">
                             <i class="fa fa-circle text-success"></i>
                             Online
@@ -77,7 +79,7 @@
                     </li>
 
                     <li class="{{ ($title === "Data User" ? 'active' : '') }}">
-                        <a href="#">
+                        <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/user">
                             <i class="fa fa-users"></i>
                             <span>
                                 Management User
@@ -122,7 +124,7 @@
                     </li>
 
                     <li class="{{ ($title === "Logout" ? 'active' : '') }}">
-                        <a href="#">
+                        <a href="#" data-toggle="modal" data-target="#ModalLogout">
                             <i class="fa fa-sign-out"></i>
                             <span>
                                 Logout
@@ -142,6 +144,29 @@
             <strong>Copyright &copy; {{date("Y")}} <a href="#">Company</a>.</strong> All rights reserved.
         </footer>
         <div class="control-sidebar-bg"></div>
+    </div>
+    <div class="modal fade" id="ModalLogout" tabindex="-1" aria-labelledby="ModalLogoutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="ModalLogoutLabel">Logout</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{config('app.url')}}/logout">
+                        @csrf
+                        <p>
+                            Apakah Anda Yakin?
+                        </p>
+                        <a href="javascript:void(0);" class="btn btn-danger" onclick="event.preventDefault();this.closest('form').submit();">
+                            Logout
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

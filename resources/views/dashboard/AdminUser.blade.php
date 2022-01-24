@@ -5,7 +5,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Data Teknisi
+            Management User
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -15,14 +15,14 @@
                 </a>
             </li>
             <li class="active">
-                Data Teknisi
+                Management User
             </li>
         </ol>
     </section>
     <section class="content container-fluid">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAdminLTE">
             <i class="fa fa-plus">
-            </i> Tambah Data Teknisi
+            </i> Tambah User
         </button>
         <table class="table">
             <tr>
@@ -30,18 +30,15 @@
                     NO
                 </th>
                 <th>
-                    Nama Teknisi
+                    Nama
                 </th>
                 <th>
-                    Perusahaan
+                    Email
                 </th>
                 <th>
-                    Aplikasi
+                    Role
                 </th>
                 <th>
-                    Contact Person
-                </th>
-                <th colspan="2">
                     Aksi
                 </th>
             </tr>
@@ -50,46 +47,40 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="ModalAdminLTELabel">Input Data Teknisi</h4>
+                        <h4 class="modal-title" id="ModalAdminLTELabel">Input Data User</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <form method="post" action="">
+                        <form method="post" action="/register">
+                            @csrf
 
                             <div class="form-group">
-                                <label for="">Nama Teknisi</label>
-                                <select class="form-control">
-                                    @foreach($tks as $tk)
-                                    <option value="{{$tk->uid}}">{{$tk->name}}</option>
-                                    @endforeach
+                                <label for="">Nama User</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="email" name="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Role</label>
+                                <select class="form-control" name="access">
+                                    <option value="admin">Admin</option>
+                                    <option value="reporter">Reporter</option>
+                                    <option value="teknisi">Teknisi</option>
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="">Perusahaan</label>
-                                <select class="form-control">
-                                    @foreach($prshs as $prsh)
-                                    <option value="{{$prsh->pr_id}}">{{$prsh->pr_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Aplikasi</label>
-                                <select class="form-control">
-                                    @foreach($apks as $apk)
-                                    <option value="{{$apk->apk_id}}">{{$apk->apk_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Contact Person</label>
-                                <input type="text" name="contact" class="form-control">
-                            </div>
                             <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
 

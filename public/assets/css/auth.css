@@ -22,7 +22,7 @@ form {
     background-color: #FFFFFF;
     padding: 2rem !important;
     border-radius: .5rem;
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
 }
 
@@ -40,7 +40,7 @@ form .h-captcha {
     border-color: #FAB210 !important;
 }
 
-.btn-blp1 {
+.btn-auth {
     background: #FAB210 !important;
     box-shadow: none !important;
 }

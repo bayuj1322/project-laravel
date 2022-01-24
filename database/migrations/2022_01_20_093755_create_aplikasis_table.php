@@ -16,10 +16,12 @@ class CreateAplikasisTable extends Migration
         Schema::create('aplikasis', function (Blueprint $table) {
             $table->id();
             $table->string('apk_id');
+            $table->string('apk_img');
             $table->string('apk_name');
+            $table->string('apk_url');
             $table->string('apk_desc');
-            $table->string('visit');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

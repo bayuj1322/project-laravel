@@ -32,7 +32,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return response()->json([
+            "message" => "Berhasil Login!",
+            "redirect_url" => config('app.url') . "/dashboard"
+        ], 200);
     }
 
     /**

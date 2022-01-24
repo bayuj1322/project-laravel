@@ -7,14 +7,15 @@
     <form class="mt-3 mb-3" autocomplete="off">
         @csrf
 
-        <a href="{{config('app.url')}}" class="text-black">
-            <div class="d-flex align-items-center mb-3 ms-5 me-5">
-                <img src="{{config('app.url')}}/assets/img/logo_sig.png" height="42" alt="SIG" class="me-3">
-                <div class="d-block ms-2">
-                    <h4 class="fw-bold mb-0">{{config("app.name")}}</h4>
-                </div>
+        <div class="d-flex align-items-center mb-4">
+            <img src="{{config('app.url')}}/assets/img/logo_sig.png" height="24" alt="SIG" class="ms-auto">
+            <div class="d-block ms-3 me-auto">
+                <h6 class="fw-bold mb-0">
+                    Welcome to Portal ICT <br />
+                    PT Semen Indonesia Group
+                </h6>
             </div>
-        </a>
+        </div>
 
         <div class="auth-text auth-message fs-14 fw-bold"></div>
 
@@ -49,7 +50,7 @@
         </div>
 
         <div class="d-flex mb-3">
-            <button class="btn btn-blp1 shadow-none w-100 text-white ps-5 pe-5 pt-2 pb-2 fs-14">
+            <button class="btn btn-auth shadow-none w-100 text-white ps-5 pe-5 pt-2 pb-2 fs-14">
                 Login
             </button>
         </div>

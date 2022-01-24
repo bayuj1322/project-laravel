@@ -20,11 +20,11 @@
         </ol>
     </section>
     <section class="content container-fluid">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAdminLTE">
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalAdminLTE">
             <i class="fa fa-plus">
             </i> Tambah Data Perusahaan
         </button>
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <th>
                     NO
@@ -39,6 +39,30 @@
                     Aksi
                 </th>
             </tr>
+
+            @foreach($prshs as $i=>$prsh)
+            <tr>
+                <td class="text-center">
+                    {{$i+1}}
+                </td>
+                <td>
+                    {{$prsh->pr_name}}
+                </td>
+                <td>
+                    {{$prsh->pr_url}}
+                </td>
+                <td>
+                    <button class="btn btn-success d-block m-auto">
+                        Ubah
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger d-block m-auto">
+                        Hapus
+                    </button>
+                </td>
+            </tr>
+            @endforeach
         </table>
     </section>
 
@@ -54,23 +78,24 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="">
+                    <form method="post" action="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/{{Request::segment(3)}}/add">
+                        @csrf
 
                         <div class="form-group">
                             <label for="">Nama Perusahaan</label>
-                            <input type="text" name="nama_perusahaan" class="form-control">
+                            <input type="text" name="i1" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="">Link Visit</label>
-                            <input type="text" name="visit" class="form-control">
+                            <input type="text" name="i2" class="form-control">
                         </div>
 
                         <button type="reset" class="btn btn-danger">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>
