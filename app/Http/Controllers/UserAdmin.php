@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aplikasi;
 use App\Models\Perusahaan;
 use App\Models\User;
+use App\Models\Teknisi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -21,7 +22,25 @@ class UserAdmin extends Controller
     function UserView()
     {
         return view('dashboard.AdminUser', [
-            "title" => "Data User"
+            "title" => "Data User",
+            "usr" => User::orderBy("id", "asc")
+                ->get()
+        ]);
+    }
+
+    function UserAdd(Request $request)
+    {
+
+        User::create([
+            "uid" => Str::random(15),
+            "name" => $request->name,
+            "email" => $request->email,
+            "access" => $request->access,
+            "password" => $request->password
+        ]);
+
+        return back()->with([
+            "success" => "Berhasil Menambah Data!"
         ]);
     }
 
@@ -29,13 +48,31 @@ class UserAdmin extends Controller
     {
         return view('dashboard.AdminTeknisi', [
             "title" => "Data Teknisi",
+            "tk" => Teknisi::orderBy("id", "asc")
+                ->get(),
             "tks" => User::where("access", "teknisi")
-                ->orderBy("name", "desc")
+                ->orderBy("name", "asc")
                 ->get(),
-            "prshs" => Perusahaan::orderBy("pr_name", "desc")
+            "prshs" => Perusahaan::orderBy("pr_name", "asc")
                 ->get(),
-            "apks" => Aplikasi::orderBy("apk_name", "desc")
+            "apks" => Aplikasi::orderBy("apk_name", "asc")
                 ->get()
+        ]);
+    }
+
+    function TeknisiAdd(Request $request)
+    {
+
+        Teknisi::create([
+            "tk_id" => Str::random(15),
+            "tk_name" => $request->user,
+            "tk_prshid" => $request->prsh,
+            "tk_apkid" => $request->apk,
+            "tk_cp" => $request->contact
+        ]);
+
+        return back()->with([
+            "success" => "Berhasil Menambah Data!"
         ]);
     }
 
@@ -43,7 +80,7 @@ class UserAdmin extends Controller
     {
         return view('dashboard.AdminAplikasi', [
             "title" => "Data Aplikasi",
-            "apks" => Aplikasi::orderBy("apk_name", "desc")
+            "apks" => Aplikasi::orderBy("id", "asc")
                 ->get()
         ]);
     }
@@ -73,7 +110,7 @@ class UserAdmin extends Controller
     {
         return view('dashboard.AdminPerusahaan', [
             "title" => "Data Nama Perusahaan",
-            "prshs" => Perusahaan::orderBy("pr_name", "desc")
+            "prshs" => Perusahaan::orderBy("id", "asc")
                 ->paginate(10)
         ]);
     }

@@ -20,11 +20,11 @@
         </ol>
     </section>
     <section class="content container-fluid">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAdminLTE">
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalAdminLTE">
             <i class="fa fa-plus">
             </i> Tambah User
         </button>
-        <table class="table">
+        <table class="table table-bordered align-middle">
             <tr>
                 <th>
                     NO
@@ -38,10 +38,41 @@
                 <th>
                     Role
                 </th>
-                <th>
+                <th colspan="2">
                     Aksi
                 </th>
             </tr>
+
+            
+            @foreach($usr as $i=>$us)
+            
+            <tr>
+                
+                <td class="text-center">
+                    {{$i+1}}
+                </td>
+                <td>
+                    {{$us->name}}
+                </td>
+                <td>
+                    {{$us->email}}
+                </td>
+                <td>
+                    {{$us->access}}
+                </td>
+                
+                <td>
+                    <button class="btn btn-success d-block m-auto">
+                        Ubah
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger d-block m-auto">
+                        Hapus
+                    </button>
+                </td>
+            </tr>
+            @endforeach
         </table>
         <div class="modal fade" id="ModalAdminLTE" tabindex="-1" aria-labelledby="ModalAdminLTELabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -81,7 +112,7 @@
                                 </select>
                             </div>
 
-                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
+                            <button type="reset" class="btn btn-danger" >Reset</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
 
                         </form>

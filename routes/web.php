@@ -25,11 +25,13 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('/',                     [UserAdmin::class, 'AdminView']);
             Route::get('/user',                 [UserAdmin::class, 'UserView']);
+            Route::post('/user/add',            [UserAdmin::class, 'UserAdd']);
             Route::get('/perusahaan',           [UserAdmin::class, 'PerusahaanView']);
             Route::post('/perusahaan/add',      [UserAdmin::class, 'PerusahaanAdd']);
             Route::get('/aplikasi',             [UserAdmin::class, 'AplikasiView']);
             Route::post('/aplikasi/add',        [UserAdmin::class, 'AplikasiAdd']);
             Route::get('/teknisi',              [UserAdmin::class, 'TeknisiView']);
+            Route::post('/teknisi/add',         [UserAdmin::class, 'TeknisiAdd']);
         });
 
         Route::prefix('reporter')->group(function () {

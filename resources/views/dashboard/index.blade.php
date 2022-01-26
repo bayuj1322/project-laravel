@@ -69,14 +69,24 @@
                         Menu
                     </li>
 
-                    <li class="{{ ($title === "Nama Perusahaan" ? 'active' : '') }}">
+                    {{-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-building"></i>
                             <span>
                                 Anak Perusahaan
                             </span>
+
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                              </span>
+                            </a>
+                            <ul class="treeview-menu ">
+                              <li class=" {{ ($title === "PT Semen Indonesia Industri Bangunan" ? 'active' : '') }}"><a href="#" class=""> PT Semen Indonesia Industri Bangunan </a></li>
+                              <li class="{{ ($title === "Dashboard v2" ? 'active' : '') }}"><a href="#"> Dashboard v2</a></li>
+                            </ul>
+                          </li>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="{{ ($title === "Data User" ? 'active' : '') }}">
                         <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/user">
@@ -87,14 +97,14 @@
                         </a>
                     </li>
 
-                    <li class="{{ ($title === "Data Role" ? 'active' : '') }}">
+                    {{-- <li class="{{ ($title === "Data Role" ? 'active' : '') }}">
                         <a href="#">
                             <i class="fa fa-user"></i>
                             <span>
                                 Management Role
                             </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="{{ ($title === "Data Nama Perusahaan" ? 'active' : '') }}">
                         <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/perusahaan">

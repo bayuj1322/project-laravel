@@ -9,6 +9,7 @@ class Dashboard extends Controller
 {
     function Check()
     {
+        
         $user = Auth::user();
         if ($user->access == "admin") {
             return redirect('/dashboard/admin');
