@@ -53,6 +53,9 @@
                 <th>
                     Phone
                 </th>
+                <th>
+                    is_active
+                </th>
                 <th colspan="2">
                     Aksi
                 </th>
@@ -91,7 +94,9 @@
                     {{$us->phone}}
                 </td>
 
-                
+                <td>
+                    {{$us->is_active}}
+                </td>
 
                 
                 <td>
@@ -169,6 +174,15 @@
                             <div class="form-group">
                                 <label for="">Phone</label>
                                 <input type="text" name="in5" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">is_active</label>
+                                <select class="form-control" name="is_active">
+                                    <option value="Nonactive">Non Active</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Oldteknisi">Old Teknisi</option>
+                                </select>
                             </div>
 
                             <button type="reset" class="btn btn-danger" >Reset</button>

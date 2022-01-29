@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Aplikasi;
 use App\Models\Perusahaan;
 use App\Models\User;
@@ -43,7 +45,9 @@ class UserAdmin extends Controller
             "code" => $request->in2,
             "desc" => $request->in3,
             "emp_no" => $request->in4,
-            "phone" => $request->in5
+            "phone" => $request->in5,
+            "is_active" => $request->is_active,
+            "created_by" => Auth::user()->name
 
         ]);
 

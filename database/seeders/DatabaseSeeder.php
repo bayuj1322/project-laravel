@@ -46,7 +46,9 @@ class DatabaseSeeder extends Seeder
             'emp_no'            => '166000',
             'team'              => 'Collaboration',
             'phone'              => '081257463888',
+            'created_by'        => 'Admin',
             'access'            => 'admin',
+            'is_active'          => 'Active',
             'email_verified_at' => Carbon::now(),
             'password'          => Hash::make('admin@admin.'),
         ]);

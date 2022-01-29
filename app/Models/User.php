@@ -28,6 +28,8 @@ class User extends Authenticatable
         'desc',
         'emp_no',
         'phone',
+        'created_by',
+        'is_active',
     ];
 
     /**
