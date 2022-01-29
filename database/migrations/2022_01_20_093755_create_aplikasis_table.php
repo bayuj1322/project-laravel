@@ -19,7 +19,7 @@ class CreateAplikasisTable extends Migration
             $table->string('apk_img');
             $table->string('apk_name');
             $table->string('apk_url');
-            $table->string('apk_desc');
+            $table->longText('apk_desc');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

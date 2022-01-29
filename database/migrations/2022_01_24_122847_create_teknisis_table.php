@@ -16,8 +16,8 @@ class CreateTeknisisTable extends Migration
         Schema::create('teknisis', function (Blueprint $table) {
             $table->id();
             $table->string('tk_id');
-            $table->string('tk_prshid');
             $table->string('tk_name');
+            $table->string('tk_prshid');
             $table->string('tk_apkid');
             $table->string('tk_cp');
             $table->timestamp('created_at')->useCurrent();

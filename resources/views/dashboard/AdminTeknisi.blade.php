@@ -46,7 +46,7 @@
                 </th>
             </tr>
 
-            @foreach($tks as $i=>$tk)
+            @foreach($tka as $i=>$tk)
             
             <tr>
                 
@@ -54,27 +54,17 @@
                     {{$i+1}}
                 </td>
                 <td >
-                
-                {{$tk->tk_name}}
-                     
+                {{$tk->name}}
                 </td>
                 <td >
-                    
-                {{$tk->tk_prshid}}
-                    
-                   
+                {{$tk->pr_name}}
                 </td >
-                <td>
-                    
-                   
-                {{$tk->tk_apkid}}
-                    
+                <td>  
+                {{$tk->apk_name}}
                 </td>
-
                 <td>
-                {{ $tk->tk_cp }}
+                {{$tk->tk_cp}}
                 </td>
-                
                 <td>
                     <button class="btn btn-success d-block m-auto">
                         Ubah
@@ -106,7 +96,7 @@
                             
                             <div class="form-group">
                                 <label for="">Nama Teknisi</label>
-                                <select class="form-control" name="user" >
+                                <select class="form-control" name="tk_name">
                                     @foreach($tks as $tk)
                                     <option value="{{$tk->uid}}">{{$tk->name}}</option>
                                     @endforeach
@@ -115,23 +105,23 @@
 
                             <div class="form-group">
                                 <label for="">Perusahaan</label>
-                                <select class="form-control" name="prsh" >
+                                <select class="form-control"  name="tk_prshid">
                                     @foreach($prshs as $prsh)
-                                    <option  value="{{$prsh->pr_id}}">{{$prsh->pr_name}}</option>
+                                    <option value="{{$prsh->pr_id}}">{{$prsh->pr_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Aplikasi</label>
-                                <select class="form-control" name="apk" >
+                                <select class="form-control" name="tk_apkid"  >
                                     @foreach($apks as $apk)
                                     <option value="{{$apk->apk_id}}">{{$apk->apk_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label for="">Contact Person</label>
                                 <input type="text" name="contact" class="form-control">
                             </div>

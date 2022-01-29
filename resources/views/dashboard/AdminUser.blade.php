@@ -38,13 +38,28 @@
                 <th>
                     Role
                 </th>
+                <th>
+                    Team
+                </th>
+                <th>
+                    Code Company
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Emp Number
+                </th>
+                <th>
+                    Phone
+                </th>
                 <th colspan="2">
                     Aksi
                 </th>
             </tr>
 
             
-            @foreach($usr as $i=>$us)
+            @foreach($user as $i=>$us)
             
             <tr>
                 
@@ -60,6 +75,24 @@
                 <td>
                     {{$us->access}}
                 </td>
+                <td>
+                    {{$us->team}}
+                </td>
+                <td>
+                    {{$us->code}}
+                </td>
+                <td>
+                    {{$us->desc}}
+                </td>
+                <td>
+                    {{$us->emp_no}}
+                </td>
+                <td>
+                    {{$us->phone}}
+                </td>
+
+                
+
                 
                 <td>
                     <button class="btn btn-success d-block m-auto">
@@ -110,6 +143,32 @@
                                     <option value="reporter">Reporter</option>
                                     <option value="teknisi">Teknisi</option>
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Team</label>
+                                <input type="text" name="in1" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Code Company</label>
+                                <input type="text" name="in2" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <input type="text" name="in3" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Emp Number</label>
+                                <input type="text" name="in4" class="form-control">
+                            </div>
+
+                           
+                            <div class="form-group">
+                                <label for="">Phone</label>
+                                <input type="text" name="in5" class="form-control">
                             </div>
 
                             <button type="reset" class="btn btn-danger" >Reset</button>

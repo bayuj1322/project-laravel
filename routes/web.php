@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/',                     [Dashboard::class, 'Check']);
+        Route::get('/',                         [Dashboard::class, 'Check']);
         Route::prefix('admin')->group(function () {
             Route::get('/',                     [UserAdmin::class, 'AdminView']);
             Route::get('/user',                 [UserAdmin::class, 'UserView']);

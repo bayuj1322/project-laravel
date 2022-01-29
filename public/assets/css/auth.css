@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 body {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
 a {
     text-decoration: none !important;
-    color: #FAB210 !important;
+    color: salmon !important;
 }
 
 .container-auth {
@@ -18,10 +18,10 @@ a {
 }
 
 form {
-    box-shadow: 0 .25rem .5rem #00000042 !important;
-    background-color: #FFFFFF;
+    box-shadow: 0 0.25rem 0.5rem #00000042 !important;
+    background-color: #ffffff;
     padding: 2rem !important;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     max-width: 420px;
     margin: auto;
 }
@@ -36,12 +36,12 @@ form .h-captcha {
 }
 
 .form-check-input:checked {
-    background-color: #FAB210 !important;
-    border-color: #FAB210 !important;
+    background-color: salmon !important;
+    border-color: salmon !important;
 }
 
 .btn-auth {
-    background: #FAB210 !important;
+    background: salmon !important;
     box-shadow: none !important;
 }
 
@@ -58,12 +58,12 @@ form .h-captcha {
 }
 
 footer {
-    background: #060D1F !important;
+    background: #060d1f !important;
     font-weight: 600 !important;
-    font-size: .75rem !important;
+    font-size: 0.75rem !important;
     padding: 1.25rem 0 !important;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 ::-webkit-scrollbar {

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
+
 class UserAdmin extends Controller
 {
     function AdminView()
@@ -21,9 +22,10 @@ class UserAdmin extends Controller
 
     function UserView()
     {
+
         return view('dashboard.AdminUser', [
             "title" => "Data User",
-            "usr" => User::orderBy("id", "asc")
+            "user" => User::orderBy("id", "asc")
                 ->get()
         ]);
     }
@@ -36,7 +38,13 @@ class UserAdmin extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "access" => $request->access,
-            "password" => $request->password
+            "password" => $request->password,
+            "team" => $request->in1,
+            "code" => $request->in2,
+            "desc" => $request->in3,
+            "emp_no" => $request->in4,
+            "phone" => $request->in5
+
         ]);
 
         return back()->with([
@@ -48,15 +56,21 @@ class UserAdmin extends Controller
     {
         return view('dashboard.AdminTeknisi', [
             "title" => "Data Teknisi",
-            "tk" => Teknisi::orderBy("id", "asc")
-                ->get(),
+            // "tk" => Teknisi::orderBy("id", "asc")
+            //     ->get(),
             "tks" => User::where("access", "teknisi")
                 ->orderBy("name", "asc")
                 ->get(),
             "prshs" => Perusahaan::orderBy("pr_name", "asc")
                 ->get(),
             "apks" => Aplikasi::orderBy("apk_name", "asc")
-                ->get()
+                ->get(),
+
+            "tka" => Teknisi::orderBy("teknisis.id", "asc")
+                ->join("users", "users.uid", "=", "teknisis.tk_name")
+                ->join("perusahaans", "perusahaans.pr_id", "=", "teknisis.tk_prshid")
+                ->join("aplikasis", "aplikasis.apk_id", "=", "teknisis.tk_apkid")
+                ->get(),
         ]);
     }
 
@@ -65,10 +79,11 @@ class UserAdmin extends Controller
 
         Teknisi::create([
             "tk_id" => Str::random(15),
-            "tk_name" => $request->user,
-            "tk_prshid" => $request->prsh,
-            "tk_apkid" => $request->apk,
+            "tk_name" => $request->tk_name,
+            "tk_prshid" => $request->tk_prshid,
+            "tk_apkid" => $request->tk_apkid,
             "tk_cp" => $request->contact
+
         ]);
 
         return back()->with([
@@ -78,7 +93,9 @@ class UserAdmin extends Controller
 
     public function AplikasiView()
     {
+
         return view('dashboard.AdminAplikasi', [
+
             "title" => "Data Aplikasi",
             "apks" => Aplikasi::orderBy("id", "asc")
                 ->get()
