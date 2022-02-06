@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <a href="#">
+                <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/">
                     <i class="fa fa-dashboard"></i>
                     Home
                 </a>
@@ -24,6 +24,11 @@
             <i class="fa fa-plus">
             </i> Tambah Data Teknisi
         </button>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-bordered align-middle">
             <tr>
                 <th>
@@ -123,17 +128,21 @@
 
                             <div class="form-group" >
                                 <label for="">Contact Person</label>
-                                <input type="text" name="contact" class="form-control">
+                                <input type="text" name="contact" class="form-control" autofocus required>
                             </div>
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
 
                         </form>
+                        {{-- @if (session('success'))
+                            {{session('success')}}
+                        @endif --}}
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @include('sweetalert::alert')
 </div>
 @endsection

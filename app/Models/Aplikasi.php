@@ -11,6 +11,7 @@ class Aplikasi extends Model
 
     protected $fillable = [
         'apk_id',
+        'apkt_id',
         'apk_img',
         'apk_name',
         'apk_url',

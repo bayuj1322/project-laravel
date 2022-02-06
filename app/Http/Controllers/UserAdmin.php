@@ -13,14 +13,18 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 
+
+
 class UserAdmin extends Controller
 {
     function AdminView()
     {
         return view('dashboard.AdminHome', [
-            "title" => "Nama Perusahaan"
+            "title" => "Home Admin"
         ]);
     }
+
+
 
     function UserView()
     {
@@ -29,7 +33,17 @@ class UserAdmin extends Controller
             "title" => "Data User",
             "user" => User::orderBy("id", "asc")
                 ->get()
+
+
         ]);
+
+        return back()->with([
+            "success" => "Berhasil Menambah Data!"
+        ]);
+
+        // return back()->with('success', 'Data Berhasil ditambahkan !!!');
+
+        // return redirect('/dashboard/admin/user')->withSuccess('Task Created Successfully!');
     }
 
     function UserAdd(Request $request)
@@ -50,6 +64,8 @@ class UserAdmin extends Controller
             "created_by" => Auth::user()->name
 
         ]);
+        // return back()->with('info', 'Task Created Successfully!');
+        // return redirect('/dashboard/admin/user')->with('msg', 'Task Created Successfully!');
 
         return back()->with([
             "success" => "Berhasil Menambah Data!"
@@ -76,6 +92,9 @@ class UserAdmin extends Controller
                 ->join("aplikasis", "aplikasis.apk_id", "=", "teknisis.tk_apkid")
                 ->get(),
         ]);
+
+        // return back()->with('success', 'Data Berhasil ditambahkan !!!');
+
     }
 
     function TeknisiAdd(Request $request)
@@ -101,10 +120,16 @@ class UserAdmin extends Controller
         return view('dashboard.AdminAplikasi', [
 
             "title" => "Data Aplikasi",
-            "apks" => Aplikasi::orderBy("id", "asc")
-                ->get()
+            "apks" => Aplikasi::orderBy("aplikasis.id", "asc")
+                ->join("users", "users.uid", "=", "aplikasis.apkt_id")
+                ->get(),
+            "teknisi" => User::where("access", "teknisi")
+                ->orderBy("name", "asc")->get(),
+
         ]);
     }
+
+
 
     function AplikasiAdd(Request $request)
     {
@@ -119,7 +144,8 @@ class UserAdmin extends Controller
             "apk_img" => $imgn,
             "apk_name" => $request->i1,
             "apk_url" => $request->i2,
-            "apk_desc" => $request->i3
+            "apk_desc" => $request->i3,
+            "apkt_id" => $request->i4
         ]);
 
         return back()->with([
@@ -134,6 +160,8 @@ class UserAdmin extends Controller
             "prshs" => Perusahaan::orderBy("id", "asc")
                 ->paginate(10)
         ]);
+
+        // return back()->with('success', 'Data Berhasil ditambahkan !!!');
     }
 
     function PerusahaanAdd(Request $request)
@@ -145,6 +173,28 @@ class UserAdmin extends Controller
         ]);
 
         return back()->with([
+            "success" => "Berhasil Menambah Data!"
+        ]);
+    }
+
+    public function PerusahaanEdit($id)
+    {
+
+        return view('dashboard.Edit1', [
+            "title" => "Edit Perusahaan",
+            "prshs" => Perusahaan::find($id)
+        ]);
+    }
+
+    public function PerusahaanEditProses($id, Request $request)
+    {
+        Perusahaan::where("id", $id)->update(
+            [
+                "pr_name" => $request->i1,
+                "pr_url" => $request->i2,
+            ]
+        );
+        return redirect('/dashboard/admin/perusahaan')->with([
             "success" => "Berhasil Menambah Data!"
         ]);
     }

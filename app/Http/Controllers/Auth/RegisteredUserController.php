@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -50,6 +51,16 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+
+        // Alert::success('Success Title', 'Success Message');
+        // return redirect('/dashboard/admin/user');
+        // Alert::success('Success Title', 'Success Message');
+        // return back()->with('success', 'Data Berhasil Ditambahkan !!!');
+
+        // return redirect('/dashboard/admin/user')->with('msg','Task Created Successfully!');
+        // Alert::success('Success Title', 'Success Message');
+        // return back()->with('success', 'Task Created Successfully!');
 
         return back()->with([
             "success" => "Berhasil Menambah Data!"

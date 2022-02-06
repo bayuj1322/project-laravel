@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <a href="#">
+                <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/">
                     <i class="fa fa-dashboard"></i>
                     Home
                 </a>
@@ -25,6 +25,11 @@
             <i class="fa fa-plus">
             </i> Tambah Data Aplikasi
         </button>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-bordered align-middle">
             <tr>
                 <th>
@@ -41,6 +46,9 @@
                 </th>
                 <th>
                     Deskripsi
+                </th>
+                <th>
+                    Teknisi
                 </th>
                 <th colspan="2">
                     Aksi
@@ -64,14 +72,24 @@
                     {{$apk->apk_desc}}
                 </td>
                 <td>
+                    {{$apk->name}}
+                </td>
+                <td>
                     <form method="GET" action="{{Request::url()}}/edit">
                         <input type="hidden" value="{{$apk->apk_id}}" name="id">
                         <button class="btn btn-success d-block m-auto">
                             Ubah
                         </button>
                     </form>
+                    {{-- <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/{{Request::segment(3)}}/edit">
+                        <i class="fa fa-edit fa-2x m-auto"></i>
+                        
+                    </a> --}}
                 </td>
                 <td>
+                    {{-- <a href="#">
+                        <i class="fa fa-trash fa-2x" style="color: red"></i>
+                    </a> --}}
                     <form method="POST" action="{{Request::url()}}/hapus">
                         @csrf
                         <input type="hidden" value="{{$apk->apk_id}}" name="id">
@@ -83,7 +101,7 @@
             </tr>
             @endforeach
         </table>
-        <!-- Modal -->
+        <!-- Modal Add-->
         <div class="modal fade" id="ModalAdminLTE" tabindex="-1" aria-labelledby="ModalAdminLTELabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -100,34 +118,47 @@
 
                             <div class="form-group">
                                 <label for="">Icon Aplikasi</label>
-                                <input type="file" name="i0" class="form-control">
+                                <input type="file" name="i0" class="form-control" autofocus required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Nama Aplikasi</label>
-                                <input type="text" name="i1" class="form-control">
+                                <input type="text" name="i1" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Link Visit Aplikasi</label>
-                                <input type="text" name="i2" class="form-control">
+                                <input type="text" name="i2" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Deskripsi</label>
-                                <input type="text" name="i3" class="form-control">
+                                <input type="text" name="i3" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Nama Teknisi</label>
+                                <select class="form-control" name="i4"  >
+                                    @foreach($teknisi as $tkn)
+                                    <option value="{{$tkn->uid}}">{{$tkn->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
 
                         </form>
+                        {{-- @if (session('success'))
+                            {{session('success')}}
+                        @endif --}}
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @include('sweetalert::alert')
 </div>
 
 @endsection

@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
 <html>
-
+    
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -146,6 +147,8 @@
         </aside>
 
         @yield("content")
+        
+        
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
@@ -179,5 +182,6 @@
         </div>
     </div>
 </body>
+
 
 </html>

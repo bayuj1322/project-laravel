@@ -7,9 +7,10 @@
         <h1>
             Data Perusahaan
         </h1>
+        
         <ol class="breadcrumb">
             <li>
-                <a href="#">
+                <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/">
                     <i class="fa fa-dashboard"></i>
                     Home
                 </a>
@@ -24,6 +25,11 @@
             <i class="fa fa-plus">
             </i> Tambah Data Perusahaan
         </button>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-bordered">
             <tr>
                 <th>
@@ -52,9 +58,12 @@
                     {{$prsh->pr_url}}
                 </td>
                 <td>
-                    <button class="btn btn-success d-block m-auto">
+                    <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/perusahaan/edit/{{ $prsh->id }}" class="btn  btn-success ">
+                        Edit
+                    </a>
+                    {{-- <button class="btn btn-success d-block m-auto" >
                         Ubah
-                    </button>
+                    </button> --}}
                 </td>
                 <td>
                     <button class="btn btn-danger d-block m-auto">
@@ -83,22 +92,24 @@
 
                         <div class="form-group">
                             <label for="">Nama Perusahaan</label>
-                            <input type="text" name="i1" class="form-control">
+                            <input type="text" name="i1" class="form-control" autofocus required>
                         </div>
 
                         <div class="form-group">
                             <label for="">Link Visit</label>
-                            <input type="text" name="i2" class="form-control">
+                            <input type="text" name="i2" class="form-control" required>
                         </div>
 
                         <button type="reset" class="btn btn-danger">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
 
                     </form>
+                    
 
                 </div>
             </div>
         </div>
     </div>
+    @include('sweetalert::alert')
 </div>
 @endsection

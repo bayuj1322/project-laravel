@@ -28,7 +28,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/user/add',            [UserAdmin::class, 'UserAdd']);
             Route::get('/perusahaan',           [UserAdmin::class, 'PerusahaanView']);
             Route::post('/perusahaan/add',      [UserAdmin::class, 'PerusahaanAdd']);
+            Route::get('/perusahaan/edit/{id}', [UserAdmin::class, 'PerusahaanEdit']);
+            Route::post('/perusahaan/edit/{id}', [UserAdmin::class, 'PerusahaanEditProses']);
             Route::get('/aplikasi',             [UserAdmin::class, 'AplikasiView']);
+
             Route::post('/aplikasi/add',        [UserAdmin::class, 'AplikasiAdd']);
             Route::get('/teknisi',              [UserAdmin::class, 'TeknisiView']);
             Route::post('/teknisi/add',         [UserAdmin::class, 'TeknisiAdd']);

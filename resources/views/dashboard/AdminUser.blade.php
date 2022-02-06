@@ -1,5 +1,6 @@
 @extends('dashboard.index')
 
+
 @section('content')
 
 <div class="content-wrapper">
@@ -9,7 +10,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <a href="#">
+                <a href="{{config('app.url')}}/{{Request::segment(1)}}/{{Request::segment(2)}}/">
                     <i class="fa fa-dashboard"></i>
                     Home
                 </a>
@@ -24,6 +25,11 @@
             <i class="fa fa-plus">
             </i> Tambah User
         </button>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-bordered align-middle">
             <tr>
                 <th>
@@ -54,7 +60,7 @@
                     Phone
                 </th>
                 <th>
-                    is_active
+                    Status
                 </th>
                 <th colspan="2">
                     Aksi
@@ -112,6 +118,7 @@
             </tr>
             @endforeach
         </table>
+        
         <div class="modal fade" id="ModalAdminLTE" tabindex="-1" aria-labelledby="ModalAdminLTELabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -128,17 +135,17 @@
 
                             <div class="form-group">
                                 <label for="">Nama User</label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control" autofocus required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Email</label>
-                                <input type="email" name="email" class="form-control">
+                                <input type="email" name="email" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control" required>
                             </div>
 
                             <div class="form-group">
@@ -152,32 +159,32 @@
 
                             <div class="form-group">
                                 <label for="">Team</label>
-                                <input type="text" name="in1" class="form-control">
+                                <input type="text" name="in1" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Code Company</label>
-                                <input type="text" name="in2" class="form-control">
+                                <input type="text" name="in2" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Description</label>
-                                <input type="text" name="in3" class="form-control">
+                                <input type="text" name="in3" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Emp Number</label>
-                                <input type="text" name="in4" class="form-control">
+                                <input type="text" name="in4" class="form-control" required>
                             </div>
 
                            
                             <div class="form-group">
                                 <label for="">Phone</label>
-                                <input type="text" name="in5" class="form-control">
+                                <input type="text" name="in5" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="">is_active</label>
+                                <label for="">Status</label>
                                 <select class="form-control" name="is_active">
                                     <option value="Nonactive">Non Active</option>
                                     <option value="Active">Active</option>
@@ -187,13 +194,18 @@
 
                             <button type="reset" class="btn btn-danger" >Reset</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            
 
                         </form>
+                        {{-- @if (session('success'))
+                            {{session('success')}}
+                        @endif --}}
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @include('sweetalert::alert')
 </div>
 @endsection

@@ -17,7 +17,8 @@ class Dashboard extends Controller
             return redirect('/dashboard/reporter');
         } elseif ($user->access == "teknisi") {
             return redirect('/dashboard/teknisi');
-        } else {
+        } 
+        else {
             return abort(404);
         }
     }
